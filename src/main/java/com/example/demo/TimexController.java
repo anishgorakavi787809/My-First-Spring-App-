@@ -3,8 +3,8 @@ package com.example.demo;
 import java.util.Map;
 import java.util.HashMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,13 +29,16 @@ public class TimexController {
     return redirectView;
     }
   
-    @PostMapping("/GOAT")
-    @ResponseBody
-    public Map<String,String> goats(@RequestBody Map<String,String> reqs) {
+    @GetMapping("/GOAT")
+    
+    public  Map<String,String>  goats(@RequestParam(value = "name", required = false, defaultValue = "nobody") String name) {
 
         Map<String,String> res = new HashMap<>();
-        res.put("msg",reqs.get("name") + " is a goat");
+
+        res.put("msg",name + " is a GOAT");
         return res;
-    }
+    } 
+
+
 }
 
